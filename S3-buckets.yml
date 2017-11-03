@@ -29,47 +29,52 @@ Mappings:
       S3hostedzoneID: Z31GFT0UA1I2HV
       websiteendpoint: s3-website-sa-east-1.amazonaws.com
 Resources:
+#################################################
+##  S3 Bucket definitions for dev and staging
+##  Prod will be added when ready
+#################################################
   DevRootBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Ref RootDomainName
+      BucketName: !Join [".", [ !Ref RootDomainName , "dev", "moodle"]]
       AccessControl: PublicRead
       WebsiteConfiguration:
         IndexDocument: index.html
         ErrorDocument: 404.html
-  DevWWWBucket:
+
+  StageRootBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub
-          - www.${Domain}
-          - Domain: !Ref RootDomainName
-      AccessControl: BucketOwnerFullControl
+      BucketName: !Join [".", [ !Ref RootDomainName , "stage", "moodle"]]
+      AccessControl: PublicRead
       WebsiteConfiguration:
-        RedirectAllRequestsTo:
-          HostName: !Ref DevRootBucket
-  myDNS:
+        IndexDocument: index.html
+        ErrorDocument: 404.html
+#################################################
+##  Route 53 DNS entries
+## 
+#################################################
+  devdns:
     Type: AWS::Route53::RecordSetGroup
     Properties:
-      HostedZoneName: !Sub 
-          - ${Domain}.
-          - Domain: !Ref RootDomainName
-      Comment: Zone apex alias.
+      HostedZoneName: !Join [".", [ !Ref RootDomainName , "dev", "moodle"]]
+      Comment: Zone apex alias for dev.
       RecordSets:
-      - 
-        Name: !Ref RootDomainName
-        Type: A
-        AliasTarget:
-          HostedZoneId: !FindInMap [ RegionMap, !Ref 'AWS::Region', S3hostedzoneID]
-          DNSName: !FindInMap [ RegionMap, !Ref 'AWS::Region', websiteendpoint]
       -
-        Name: !Sub
-            - www.${Domain}
-            - Domain: !Ref RootDomainName
+        Name: !Ref RootDomainName
         Type: CNAME
         TTL: 900
         ResourceRecords:
-        - !GetAtt DevWWWBucket.DomainName
-Outputs:
-  DevWebsiteURL:
-    Value: !GetAtt DevRootBucket.WebsiteURL
-    Description: URL for dev website hosted on S3
+        - !GetAtt DevRootBucket.DomainName
+  stagedns:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneName: !Join [".", [ !Ref RootDomainName , "stage", "moodle"]]
+      Comment: Zone apex alias for stage.
+      RecordSets:
+      -
+        Name: !Ref RootDomainName
+        Type: CNAME
+        TTL: 900
+        ResourceRecords:
+        - !GetAtt StageRootBucket.DomainName

@@ -1,5 +1,5 @@
 {
-  "name": "mean-app",
+  "name": "moodoe-dot-com",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -9,10 +9,11 @@
     "test": "ng test --watch=false",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy" : "aws s3 sync --delete ./dist s3://vssdevelopment.com",
+    "deploy-dev" : "aws s3 sync --delete ./dist s3://dev.moodle.vssdevelopment.com",
+    "deploy-prod" : "aws s3 sync --delete ./dist s3://stage.moodle.vssdevelopment.com",    
     "install-angular" : "npm install -g @angular/cli",
-    "cloudformation-package-dev" : "aws cloudformation package --template-file dev-s3-static-site-template.yml --output-template-file dev-output.yml --s3-bucket elasticbeanstalk-moodle-deployables",
-    "cloudformation-deploy-dev" : "aws cloudformation deploy --template-file dev-output.yml --capabilities CAPABILITY_IAM --stack-name dev-moodle-tenant-s3 --parameter-overrides RootDomainName=vssdevelopment.com || true"
+    "cloudformation-package-env" : "aws cloudformation package --template-file S3-buckets.yml --output-template-file output.yml --s3-bucket elasticbeanstalk-moodle-deployables",
+    "cloudformation-deploy-env" : "aws cloudformation deploy --template-file output.yml --capabilities CAPABILITY_IAM --stack-name moodle-dot-com --parameter-overrides RootDomainName=vssdevelopment.com || true"
     
   },
   "private": true,

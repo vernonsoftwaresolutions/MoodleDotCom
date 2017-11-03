@@ -20,6 +20,6 @@ deployment:
   development:
     branch: master
     commands:
-      - npm run cloudformation-package-dev
-      - npm run cloudformation-deploy-dev
-      - npm run deploy
+      - npm run cloudformation-package-env
+      - npm run cloudformation-deploy-env
+      - npm run deploy-dev
