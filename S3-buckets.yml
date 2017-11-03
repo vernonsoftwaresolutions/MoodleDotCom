@@ -36,7 +36,7 @@ Resources:
   DevRootBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Join [".", [ !Ref RootDomainName , "dev", "moodle"]]
+      BucketName: !Join [".", [ "dev", "moodle", !Ref RootDomainName ]]
       AccessControl: PublicRead
       WebsiteConfiguration:
         IndexDocument: index.html
@@ -45,7 +45,7 @@ Resources:
   StageRootBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Join [".", [ !Ref RootDomainName , "stage", "moodle"]]
+      BucketName: !Join [".", [ "stage", "moodle", !Ref RootDomainName ]]
       AccessControl: PublicRead
       WebsiteConfiguration:
         IndexDocument: index.html
@@ -57,11 +57,11 @@ Resources:
   devdns:
     Type: AWS::Route53::RecordSetGroup
     Properties:
-      HostedZoneName: !Join [".", [ !Ref RootDomainName , "dev", "moodle"]]
+      HostedZoneName: !Ref RootDomainName
       Comment: Zone apex alias for dev.
       RecordSets:
       -
-        Name: !Ref RootDomainName
+        Name: !Join [".", [  "dev", "moodle", !Ref RootDomainName]]
         Type: CNAME
         TTL: 900
         ResourceRecords:
@@ -69,11 +69,11 @@ Resources:
   stagedns:
     Type: AWS::Route53::RecordSetGroup
     Properties:
-      HostedZoneName: !Join [".", [ !Ref RootDomainName , "stage", "moodle"]]
+      HostedZoneName: !Ref RootDomainName
       Comment: Zone apex alias for stage.
       RecordSets:
       -
-        Name: !Ref RootDomainName
+        Name: !Join [".", [  "stage", "moodle", !Ref RootDomainName]]
         Type: CNAME
         TTL: 900
         ResourceRecords:
