@@ -57,7 +57,7 @@ Resources:
   devdns:
     Type: AWS::Route53::RecordSetGroup
     Properties:
-      HostedZoneName: !Ref RootDomainName
+      HostedZoneName: !Join [".", [!Ref RootDomainName, ""]]
       Comment: Zone apex alias for dev.
       RecordSets:
       -
@@ -69,7 +69,7 @@ Resources:
   stagedns:
     Type: AWS::Route53::RecordSetGroup
     Properties:
-      HostedZoneName: !Ref RootDomainName
+      HostedZoneName: !Join [".", [!Ref RootDomainName, ""]]
       Comment: Zone apex alias for stage.
       RecordSets:
       -
