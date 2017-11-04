@@ -29,6 +29,62 @@ Mappings:
       S3hostedzoneID: Z31GFT0UA1I2HV
       websiteendpoint: s3-website-sa-east-1.amazonaws.com
 Resources:
+
+#################################################
+##  S3 Bucket policies for dev and staging
+##  Prod will be added when ready
+#################################################
+
+  DevBucketPolicy: 
+    Type: "AWS::S3::BucketPolicy"
+    Properties: 
+      Bucket: !Ref DevRootBucket
+      PolicyDocument: 
+        Statement: 
+          - 
+            Action: 
+              - "s3:GetObject"
+            Effect: "Allow"
+            Resource: 
+              Fn::Join: 
+                - ""
+                - 
+                  - "arn:aws:s3:::"
+                  - 
+                    Ref: "DevRootBucket"
+                  - "/*"
+            Principal: "*"
+            #   Uncomment and fix to add condition to only allow traffic from specific domain
+            # Condition: 
+            #   StringLike: 
+            #     aws:Referer: 
+            #       - !Join [".", [ "http://dev", "moodle", !Ref RootDomainName ]]
+            #       - "http://example.com/*"
+  StageBucketPolicy: 
+    Type: "AWS::S3::BucketPolicy"
+    Properties: 
+      Bucket: !Ref StageRootBucket
+      PolicyDocument: 
+        Statement: 
+          - 
+            Action: 
+              - "s3:GetObject"
+            Effect: "Allow"
+            Resource: 
+              Fn::Join: 
+                - ""
+                - 
+                  - "arn:aws:s3:::"
+                  - 
+                    Ref: "DevRootBucket"
+                  - "/*"
+            Principal: "*"
+            #   Uncomment and fix to add condition to only allow traffic from specific domain
+            # Condition: 
+            #   StringLike: 
+            #     aws:Referer: 
+            #       - !Join [".", [ "http://dev", "moodle", !Ref RootDomainName ]]
+            #       - "http://example.com/*"
 #################################################
 ##  S3 Bucket definitions for dev and staging
 ##  Prod will be added when ready
@@ -50,6 +106,7 @@ Resources:
       WebsiteConfiguration:
         IndexDocument: index.html
         ErrorDocument: 404.html
+
 #################################################
 ##  Route 53 DNS entries
 ## 
