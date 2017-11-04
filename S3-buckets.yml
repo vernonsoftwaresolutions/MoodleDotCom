@@ -76,7 +76,7 @@ Resources:
                 - 
                   - "arn:aws:s3:::"
                   - 
-                    Ref: "DevRootBucket"
+                    Ref: "StageRootBucket"
                   - "/*"
             Principal: "*"
             #   Uncomment and fix to add condition to only allow traffic from specific domain
