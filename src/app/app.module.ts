@@ -1,11 +1,12 @@
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignUpService } from './sign-up/sign-up.service';
 
 const ROUTES = [
   {
@@ -26,10 +27,11 @@ const ROUTES = [
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,    
     HttpModule,
     RouterModule.forRoot(ROUTES) // Add routes to the app
   ],
-  providers: [],
+  providers: [SignUpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

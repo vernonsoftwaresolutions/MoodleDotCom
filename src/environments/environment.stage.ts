@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  env: "dev",
-  postUserUrl: "https://dev.users.vssdevelopment.com/v1/users",
+  env: "stage",
+  postUserUrl: "https://stage.users.vssdevelopment.com/v1/users",
 };
