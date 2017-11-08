@@ -7,16 +7,15 @@
     "start": "ng serve",
     "build-dev": "ng build --env=dev",
     "build-stage": "ng build --env=stage",
-    "build-prod": "ng build --env=prod",    
+    "build-prod": "ng build --env=prod",
     "test": "ng test --watch=false",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy-dev" : "aws s3 sync --delete ./dist s3://dev.moodle.vssdevelopment.com",
-    "deploy-stage" : "aws s3 sync --delete ./dist s3://stage.moodle.vssdevelopment.com",    
-    "install-angular" : "npm install -g @angular/cli",
-    "cloudformation-package-env" : "aws cloudformation package --template-file S3-buckets.yml --output-template-file output.yml --s3-bucket elasticbeanstalk-moodle-deployables",
-    "cloudformation-deploy-env" : "aws cloudformation deploy --template-file output.yml --capabilities CAPABILITY_IAM --stack-name moodle-dot-com --parameter-overrides RootDomainName=vssdevelopment.com || true"
-    
+    "deploy-dev": "aws s3 sync --delete ./dist s3://dev.moodle.vssdevelopment.com",
+    "deploy-stage": "aws s3 sync --delete ./dist s3://stage.moodle.vssdevelopment.com",
+    "install-angular": "npm install -g @angular/cli",
+    "cloudformation-package-env": "aws cloudformation package --template-file S3-buckets.yml --output-template-file output.yml --s3-bucket elasticbeanstalk-moodle-deployables",
+    "cloudformation-deploy-env": "aws cloudformation deploy --template-file output.yml --capabilities CAPABILITY_IAM --stack-name moodle-dot-com --parameter-overrides RootDomainName=vssdevelopment.com || true"
   },
   "private": true,
   "dependencies": {
@@ -34,6 +33,7 @@
     "core-js": "^2.4.1",
     "express": "^4.15.4",
     "lodash": "^4.17.4",
+    "ng2-bootstrap-modal": "^1.0.1",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14"
   },
