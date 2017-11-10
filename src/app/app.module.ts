@@ -10,16 +10,21 @@ import { SuccessComponent } from './dialog/success.component';
 import { AppComponent } from './app.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignUpService } from './sign-up/sign-up.service';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 const ROUTES = [
   {
     path: '',
-    redirectTo: 'sign-up',
+    redirectTo: 'landing-page',
     pathMatch: 'full'
   },
   {
     path: 'sign-up',
     component: SignUpComponent
+  },
+  {
+    path: 'landing-page',
+    component: LandingPageComponent
   }
 ];
 @NgModule({
@@ -27,7 +32,8 @@ const ROUTES = [
     AppComponent,
     SignUpComponent,
     ConfirmComponent,
-    SuccessComponent
+    SuccessComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,
