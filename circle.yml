@@ -11,9 +11,9 @@ dependencies:
      - npm install  # -dev
      - npm run install-angular
 
-test:
-  override:
-    - npm test
+#test:
+ # override:
+  #  - npm test
 
 deployment:
   development:
