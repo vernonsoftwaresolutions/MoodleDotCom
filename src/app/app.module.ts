@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignUpService } from './sign-up/sign-up.service';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { SearchSitesComponent } from './search-sites/search-sites.component';
 
 const ROUTES = [
   {
@@ -25,6 +26,10 @@ const ROUTES = [
   {
     path: 'landing-page',
     component: LandingPageComponent
+  },
+  {
+    path: 'search',
+    component: SearchSitesComponent
   }
 ];
 @NgModule({
@@ -33,7 +38,8 @@ const ROUTES = [
     SignUpComponent,
     ConfirmComponent,
     SuccessComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    SearchSitesComponent
   ],
   imports: [
     BrowserModule,

@@ -14,13 +14,13 @@ export class LandingPageComponent implements OnInit {
   }
 
   openSignUp() {
-    console.log("hi")
-    let disposable = this.dialogService.addDialog(ConfirmComponent, {
-        title:'Confirm title', 
-        message:'Confirm message'})
-        .subscribe((isConfirmed)=>{
+    console.log('hi');
+    const disposable = this.dialogService.addDialog(ConfirmComponent, {
+        title: 'Confirm title',
+        message: 'Confirm message'})
+        .subscribe((isConfirmed) => {
             //We get dialog result
-            if(isConfirmed) {
+            if (isConfirmed) {
                 alert('accepted');
             }
             else {
@@ -29,9 +29,9 @@ export class LandingPageComponent implements OnInit {
         });
     //We can close dialog calling disposable.unsubscribe();
     //If dialog was not closed manually close it by timeout
-    setTimeout(()=>{
+    setTimeout(() => {
         disposable.unsubscribe();
-    },10000);
+    }, 10000);
 }
 
 }
