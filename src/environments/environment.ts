@@ -7,4 +7,6 @@ export const environment = {
   production: false,
   env: 'dev',
   postUserUrl: 'https://dev.users.vssdevelopment.com/v1/users',
+  getSitesByAccount: 'https://dev.sites.vssdevelopment.com/accounts/:aid/sites',
+  getAccountsByEmail: 'https://dev.accounts.vssdevelopment.com/v1/accounts?email=:email'
 };

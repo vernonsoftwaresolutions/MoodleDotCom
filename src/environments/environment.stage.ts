@@ -7,4 +7,8 @@ export const environment = {
   production: false,
   env: 'stage',
   postUserUrl: 'https://stage.users.vssdevelopment.com/v1/users',
+  getSitesByAccount: 'https://stage.sites.vssdevelopment.com//accounts/:aid/sites',
+  getAccountsByEmail: 'https://stage.accounts.vssdevelopment.com/v1/accounts?email=:email'
+  
+  
 };

@@ -10,6 +10,8 @@ import { SuccessComponent } from './dialog/success.component';
 import { AppComponent } from './app.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignUpService } from './sign-up/sign-up.service';
+import { SearchSiteService } from './search-sites/search-sites.service';
+
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { SearchSitesComponent } from './search-sites/search-sites.component';
 
@@ -54,7 +56,7 @@ const ROUTES = [
     ConfirmComponent,
     SuccessComponent
   ],
-  providers: [SignUpService],
+  providers: [SignUpService, SearchSiteService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

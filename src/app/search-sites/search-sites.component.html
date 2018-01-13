@@ -2,7 +2,7 @@
   
 <!--Top Table UI-->
 <div class="card p-2 mb-5 ">
-    
+
         <!--Grid row-->
         <div class="row">
   
@@ -12,7 +12,10 @@
     
     </div>
     <!--Top Table UI-->
-    
+    <form class="form-inline mt-2 ml-2 ">
+            <input class="form-control my-0 py-0" type="text" placeholder="Email Address" style="max-width: 150px;"  #email>
+            <button (click)="searchByEmail(email.value)" class="btn btn-sm btn-primary ml-2 px-1  w3-dark-grey"><i class="fa fa-search"></i>  </button>
+        </form>
     <div class="card card-cascade narrower w3-light-grey">
     
         <!--Card image-->
@@ -21,18 +24,18 @@
     
         </div>
         <!--/Card image-->
-    
+     
         <div class="px-4">
     
             <div class="table-wrapper">
                 <!--Table-->
                 <table class="table table-hover mb-0">
-    
+             
                     <!--Table head-->
                     <thead>
                         <tr>
 
-                            <th class="th-lg"><a>Account Owner<i class="fa fa-sort ml-1"></i></a></th>
+                            <th class="th-lg"><a>AccountId<i class="fa fa-sort ml-1"></i></a></th>
                             <th class="th-lg"><a href="">Email<i class="fa fa-sort ml-1"></i></a></th>
                             <th class="th-lg"><a href="">Url<i class="fa fa-sort ml-1"></i></a></th>
                             <th class="th-lg"><a href="">Status<i class="fa fa-sort ml-1"></i></a></th>                        
@@ -44,55 +47,14 @@
     
                     <!--Table body-->
                     <tbody>
-                        <tr>
-   
-                            <td>Andrew Larsen</td>
-                            <td>andrew.larse514@gmail.com</td>
-                            <td>http://andrew.vssdevelopment.com</td>
-                            <td>CREATE_COMPLETE</td>
-                            <td>Nov 9, 2017</td>                            
-                            <td><button class="btn btn-danger" (click)="deleteTenant(stack.stackName)" >Delete</button></td>                            
-                           
-                        </tr>
-                        <tr>
-
-                            <td>Andrew Larsen</td>
-                            <td>andrew.larse514@gmail.com</td>
-                            <td>http://andrew.vssdevelopment.com</td>
-                            <td>CREATE_COMPLETE</td>
-                            <td>Nov 9, 2017</td>                                                        
-                            <td><button class="btn btn-danger" (click)="deleteTenant(stack.stackName)" >Delete</button></td>                            
-                           
-                        </tr>
-                        <tr>
-    
-                            <td>Andrew Larsen</td>
-                            <td>andrew.larse514@gmail.com</td>
-                            <td>http://andrew.vssdevelopment.com</td>
-                            <td>CREATE_COMPLETE</td>
-                            <td>Nov 9, 2017</td>                                                        
-                            <td><button class="btn btn-danger" (click)="deleteTenant(stack.stackName)" >Delete</button></td>                            
-                           
-                        </tr>
-                        <tr>
-                            <td>Andrew Larsen</td>
-                            <td>andrew.larse514@gmail.com</td>
-                            <td>http://andrew.vssdevelopment.com</td>
-                            <td>CREATE_COMPLETE</td>
-                            <td>Nov 9, 2017</td>                                                        
-                            <td><button class="btn btn-danger" (click)="deleteTenant(stack.stackName)" >Delete</button></td>                            
-                           
-                        </tr>
-                        <tr>
-
-                            <td>Andrew Larsen</td>
-                            <td>andrew.larse514@gmail.com</td>
-                            <td>http://andrew.vssdevelopment.com</td>
-                            <td>CREATE_COMPLETE</td>
-                            <td>Nov 9, 2017</td>                                                        
-                            <td><button class="btn btn-danger" (click)="deleteTenant(stack.stackName)" >Delete</button></td>                            
-                           
-                        </tr>
+                            <tr *ngFor="let site of sites">
+                                    <td>{{site.accountId.S}}</td>
+                                    <td>{{site.email.S}}</td>
+                                    <td>{{site.url.S}}</td>
+                                    <td>{{(site.status) ? site.status.S : N/A}}</td>
+                                    <td>{{site.creationTimestamp.N | date}}</td>
+                                   
+                            </tr>
                     </tbody>
                     <!--Table body-->
                 </table>
@@ -107,6 +69,6 @@
             
             </div>
             <!--Bottom Table UI-->
-    
+
         </div>
     </div>
