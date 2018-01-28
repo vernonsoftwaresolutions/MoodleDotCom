@@ -6,7 +6,10 @@
 export const environment = {
   production: false,
   env: 'dev',
-  postUserUrl: 'https://dev.users.vssdevelopment.com/v1/users',
+  postAccountUrl: 'https://dev.accounts.vssdevelopment.com/v1/accounts',
+  postSiteUrl: 'https://dev.sites.vssdevelopment.com/accounts/:aid/sites',
   getSitesByAccount: 'https://dev.sites.vssdevelopment.com/accounts/:aid/sites',
-  getAccountsByEmail: 'https://dev.accounts.vssdevelopment.com/v1/accounts?email=:email'
+  getAccountsByEmail: 'https://dev.accounts.vssdevelopment.com/v1/accounts?email=:email',
+  getAccountsById: 'https://dev.accounts.vssdevelopment.com/v1/accounts/:aid'
+
 };

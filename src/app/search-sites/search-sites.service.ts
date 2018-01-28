@@ -30,4 +30,17 @@ export class SearchSiteService {
     .map(res => res.json());
   }
 
+  //get account by id
+  getAccountById(id: string){
+    let url = environment.getAccountsById.replace(':aid', id)
+    return this.http.get(url)
+    .map(res => res.json())
+  }
+    //get account by id
+    createSite(request: any, id: string){
+      let url = environment.postSiteUrl.replace(':aid', id)
+      return this.http.post(url, request)
+      .map(res => res.json())
+    }
+
 }

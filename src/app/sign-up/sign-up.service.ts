@@ -9,9 +9,9 @@ export class SignUpService {
   constructor(private http: Http) { }
 
   // Get all posts from the API
-  postUser(user: any) {
+  postAccount(account: any) {
     //todo-add some sort of loading animation
-    return this.http.post(environment.postUserUrl, user)
+    return this.http.post(environment.postAccountUrl, account)
       .map(res => res.json());
   }
 

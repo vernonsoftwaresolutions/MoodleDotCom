@@ -1,74 +1,106 @@
 
   
-<!--Top Table UI-->
-<div class="card p-2 mb-5 ">
+    <!--Top Table UI-->
+    <div class="card p-2 mb-5 ">
 
         <!--Grid row-->
         <div class="row">
   
     
         </div>
-        <!--Grid row-->
+        <div style="width: 100%; overflow: hidden;">
+
+            <!--Grid row-->
+            <div class="w3-col m6 " style="float: left">
+                <br>
+                <br>
+                <h3>Account: {{account.companyName}}</h3>
+                <br>
+
+                <p><i class="fa fa-circle-o fa-fw w3-small w3-margin-right"></i> Account Owner: {{account.firstName}}, {{account.lastName}}</p>
+                <p><i class="fa fa-circle-o fa-fw w3-small w3-margin-right"></i> Phone: {{account.phoneNumber}}</p>
+                <p><i class="fa fa-circle-o fa-fw w3-small w3-margin-right"> </i> Email: {{account.email}}</p>
+                <p><i class="fa fa-circle-o fa-fw w3-small w3-margin-right"></i> Location: Chicago, US</p>
+                    <form class="form-inline">
+                        <div class="form-group mx-sm-3 mb-2">
+                                <label for="inputPassword2" class="sr-only">Password</label>
+                           <input class="form-control" id="siteName" placeholder="Site Name" #siteName>
+                        </div>
+                        <button (click)="createSite(siteName.value)" class="btn btn-primary mb-2">Create</button>
+
+                      </form>
+                <br>
+
+            </div>
+        </div>
+          <div class="card card-cascade narrower w3-light-grey">
     
+            <!--Card image-->
+            <div class="view gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+        
+        
+            </div>
+            <!--/Card image-->
+         
+            <div class="px-4">
+        
+                <div class="table-wrapper">
+                    <!--Table-->
+                    <table class="table table-hover mb-0">
+                 
+                        <!--Table head-->
+                        <thead>
+                            <tr>
+    
+                                <th class="th-lg"><a>AccountId<i class="fa fa-sort ml-1"></i></a></th>
+                                <th class="th-lg"><a href="">Email<i class="fa fa-sort ml-1"></i></a></th>
+                                <th class="th-lg"><a href="">Url<i class="fa fa-sort ml-1"></i></a></th>
+                                <th class="th-lg"><a href="">Status<i class="fa fa-sort ml-1"></i></a></th>                        
+                                <th class="th-lg"><a href="">Creation Date<i class="fa fa-sort ml-1"></i></a></th>                      
+                                
+                            </tr>
+                        </thead>
+                        <!--Table head-->
+        
+                        <!--Table body-->
+                        <tbody>
+                                <tr *ngFor="let site of sites">
+                                        <td>{{site.accountId.S}}</td>
+                                        <td>{{site.email.S}}</td>
+                                        <td>
+                                                <a href="{{site.url.S}}">
+                                                  <div style="height:100%;width:100%">
+                                                        {{site.url.S}}        
+                                                  </div>
+                                                </a>
+                                        </td>
+                                        <td>{{(site.status) ? site.status.S : N/A}}</td>
+                                        <td>{{site.creationTimestamp.N | date}}</td>
+                                        <td><button class="btn btn-danger" (click)="deleteTenant(stack.stackName)" >Delete</button></td>
+
+                                </tr>
+                        </tbody>
+                        <!--Table body-->
+                    </table>
+                    <!--Table-->
+                </div>
+        
+                <hr class="my-0">
+        
+                <!--Bottom Table UI-->
+                <div class="d-flex justify-content-between">
+        
+                
+                </div>
+                <!--Bottom Table UI-->
+    
+            </div>
+        </div>
     </div>
+    
     <!--Top Table UI-->
-    <form class="form-inline mt-2 ml-2 ">
+    <!-- <form class="form-inline mt-2 ml-2 ">
             <input class="form-control my-0 py-0" type="text" placeholder="Email Address" style="max-width: 150px;"  #email>
             <button (click)="searchByEmail(email.value)" class="btn btn-sm btn-primary ml-2 px-1  w3-dark-grey"><i class="fa fa-search"></i>  </button>
-        </form>
-    <div class="card card-cascade narrower w3-light-grey">
+        </form> -->
     
-        <!--Card image-->
-        <div class="view gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
-    
-    
-        </div>
-        <!--/Card image-->
-     
-        <div class="px-4">
-    
-            <div class="table-wrapper">
-                <!--Table-->
-                <table class="table table-hover mb-0">
-             
-                    <!--Table head-->
-                    <thead>
-                        <tr>
-
-                            <th class="th-lg"><a>AccountId<i class="fa fa-sort ml-1"></i></a></th>
-                            <th class="th-lg"><a href="">Email<i class="fa fa-sort ml-1"></i></a></th>
-                            <th class="th-lg"><a href="">Url<i class="fa fa-sort ml-1"></i></a></th>
-                            <th class="th-lg"><a href="">Status<i class="fa fa-sort ml-1"></i></a></th>                        
-                            <th class="th-lg"><a href="">Creation Date<i class="fa fa-sort ml-1"></i></a></th>                      
-                            
-                        </tr>
-                    </thead>
-                    <!--Table head-->
-    
-                    <!--Table body-->
-                    <tbody>
-                            <tr *ngFor="let site of sites">
-                                    <td>{{site.accountId.S}}</td>
-                                    <td>{{site.email.S}}</td>
-                                    <td>{{site.url.S}}</td>
-                                    <td>{{(site.status) ? site.status.S : N/A}}</td>
-                                    <td>{{site.creationTimestamp.N | date}}</td>
-                                   
-                            </tr>
-                    </tbody>
-                    <!--Table body-->
-                </table>
-                <!--Table-->
-            </div>
-    
-            <hr class="my-0">
-    
-            <!--Bottom Table UI-->
-            <div class="d-flex justify-content-between">
-    
-            
-            </div>
-            <!--Bottom Table UI-->
-
-        </div>
-    </div>

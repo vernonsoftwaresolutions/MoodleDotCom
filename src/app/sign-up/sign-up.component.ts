@@ -27,9 +27,9 @@ export class SignUpComponent implements OnInit {
       });
   }
 
-  createUser(){
+  createAccount(){
     if (this.addForm.valid) {
-      const adduser = {
+      const addAccount = {
           firstName: this.addForm.controls['firstName'].value,
           lastName: this.addForm.controls['lastName'].value,
           email: this.addForm.controls['email'].value,
@@ -37,12 +37,12 @@ export class SignUpComponent implements OnInit {
           companyName: this.addForm.controls['companyName'].value,
 
       };
-      console.log('about to add user');
-      console.log(adduser); // adduser var contains all our form values. store it where you want
-      this.signUpService.postUser(adduser).subscribe(user => {
+      console.log('about to add account');
+      console.log(addAccount); // adduser var contains all our form values. store it where you want
+      this.signUpService.postAccount(addAccount).subscribe(account => {
             const disposable = this.dialogService.addDialog(SuccessComponent, {
-              title: 'Successfully Created Moodel Instance',
-              message: 'Moodle instance ' + user.companyName + ' was succesfully created for user ' + user.firstName})
+              title: 'Successfully Created Site',
+              message: 'Moodle site ' + account.companyName + ' was succesfully created for account ' + account.firstName})
               .subscribe(() => {
                   //We get dialog result
                   disposable.unsubscribe();

@@ -6,9 +6,13 @@
 export const environment = {
   production: false,
   env: 'stage',
-  postUserUrl: 'https://stage.users.vssdevelopment.com/v1/users',
+  postAccountUrl: 'https://stage.accounts.vssdevelopment.com/v1/accounts',
+  postSiteUrl: 'https://stage.sites.vssdevelopment.com/accounts/:aid/sites',
+
   getSitesByAccount: 'https://stage.sites.vssdevelopment.com//accounts/:aid/sites',
-  getAccountsByEmail: 'https://stage.accounts.vssdevelopment.com/v1/accounts?email=:email'
+  getAccountsByEmail: 'https://stage.accounts.vssdevelopment.com/v1/accounts?email=:email',
+  getAccountsById: 'https://stage.accounts.vssdevelopment.com/v1/accounts/:aid'
+
   
   
 };

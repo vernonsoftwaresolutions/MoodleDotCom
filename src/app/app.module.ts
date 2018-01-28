@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from './dialog/confirm.component';
 import { SuccessComponent } from './dialog/success.component';
+import { LoginComponent } from './dialog/login.component';
 
 import { AppComponent } from './app.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
@@ -30,7 +31,7 @@ const ROUTES = [
     component: LandingPageComponent
   },
   {
-    path: 'search',
+    path: 'search/:id',
     component: SearchSitesComponent
   }
 ];
@@ -39,6 +40,7 @@ const ROUTES = [
     AppComponent,
     SignUpComponent,
     ConfirmComponent,
+    LoginComponent,
     SuccessComponent,
     LandingPageComponent,
     SearchSitesComponent
@@ -54,6 +56,7 @@ const ROUTES = [
   ],
   entryComponents: [
     ConfirmComponent,
+    LoginComponent,
     SuccessComponent
   ],
   providers: [SignUpService, SearchSiteService],
