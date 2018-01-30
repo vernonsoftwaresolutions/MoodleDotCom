@@ -28,7 +28,7 @@ export interface LoginModel {
                         <input type="email" class="form-control" id="email" placeholder="Email" #email>
                     </div>
 
-                    <button (click)="login(email.value)" class="btn btn-primary mb-2">Login</button>
+                    <button (click)="login(email.value)" class="btn btn-primary mb-2"><i [ngClass]="{'fa fa-spinner fa-spin': loginLoading == 1}"></i>  Login</button>
                     </form>
 
                     <div class="modal-footer">
@@ -41,6 +41,7 @@ export class LoginComponent extends DialogComponent<LoginModel, boolean> impleme
   title: string;
   message: string;
   public notFound: boolean = false;
+  public loginLoading = 0;
 
   constructor(dialogService: DialogService, 
     private searchService: SearchSiteService, private router: Router) {
@@ -49,13 +50,15 @@ export class LoginComponent extends DialogComponent<LoginModel, boolean> impleme
   login(email) {
     // we set dialog result as true on click on confirm button,
     // then we can get dialog result from caller code
+    this.loginLoading = 1;
     this.result = true;
     this.searchService.getAccountByEmail(email).subscribe(result => {
         console.log("returned result account ", result)
         //now lookup account      
         this.close();  
+        this.loginLoading = 0;
         this.router.navigate(['/search', result.id]);
-
+        
     })
   
   }

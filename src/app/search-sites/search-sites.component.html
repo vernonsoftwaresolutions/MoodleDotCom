@@ -26,7 +26,7 @@
                                 <label for="inputPassword2" class="sr-only">Password</label>
                            <input class="form-control" id="siteName" placeholder="Site Name" #siteName>
                         </div>
-                        <button (click)="createSite(siteName.value)" class="btn btn-primary mb-2">Create</button>
+                        <button (click)="createSite(siteName.value)" class="btn btn-primary mb-2" ><i [ngClass]="{'fa fa-spinner fa-spin': createLoading == 1}"></i>  Create</button>
 
                       </form>
                 <br>
@@ -76,7 +76,7 @@
                                         </td>
                                         <td>{{(site.status) ? site.status.S : N/A}}</td>
                                         <td>{{site.creationTimestamp.N | date}}</td>
-                                        <td><button class="btn btn-danger" (click)="deleteSite(site.siteId.S)" >Delete</button></td>
+                                        <td><button class="btn btn-danger" (click)="deleteSite(site.siteId.S)" > Delete</button></td>
 
                                 </tr>
                         </tbody>

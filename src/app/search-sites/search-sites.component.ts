@@ -12,6 +12,7 @@ export class SearchSitesComponent implements OnInit {
 
   sites: any = []
   account: any = {}
+  createLoading: any = 0
   private id: any
 
   constructor(private searchService: SearchSiteService,
@@ -64,10 +65,13 @@ export class SearchSitesComponent implements OnInit {
       clientName: this.account.companyName,
       siteName: newName
     }
+    //set loading
+    this.createLoading = 1;
     this.searchService.createSite(request, this.account.id).subscribe(result => {
       console.log("returned result ", result)
       //refresh sites
       this.getSitesByAccountId(this.account.id)
+      this.createLoading = 0;
     })
   }
 
