@@ -6,7 +6,8 @@ export const environment = {
   deleteSiteUrl: 'https://prod.sites.vssdevelopment.com/accounts/:aid/sites/:sid',
   getSitesByAccount: 'https://prod.sites.vssdevelopment.com//accounts/:aid/sites',
   getAccountsByEmail: 'https://prod.accounts.vssdevelopment.com/v1/accounts?email=:email',
-  getAccountsById: 'https://prod.accounts.vssdevelopment.com/v1/accounts/:aid'
+  getAccountsById: 'https://prod.accounts.vssdevelopment.com/v1/accounts/:aid',
+  deleteAccountById: 'https://prod.accounts.vssdevelopment.com/v1/accounts/:aid'
 
   
 };

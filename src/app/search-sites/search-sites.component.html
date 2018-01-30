@@ -95,7 +95,7 @@
                 </div>
                 <br>
                 <!--Bottom Table UI-->
-                <button (click)="refresh()" class="btn btn-primary mb-2 w3-margin-right" style="float: right;">Refresh</button>
+                <button (click)="refresh()" class="btn btn-primary mb-2 w3-margin-right" style="float: right;"><i [ngClass]="{'fa fa-refresh fa-spin': refreshLoading == 1}"></i>  Refresh</button>
 
             </div>
         </div>

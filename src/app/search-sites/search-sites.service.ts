@@ -30,6 +30,11 @@ export class SearchSiteService {
     .map(res => res.json());
   }
 
+  deleteAccount(id: string){
+    let url = environment.deleteAccountById.replace(':aid', id)
+    return this.http.delete(url)
+    .map(res => res.json())
+  }
   //get account by id
   getAccountById(id: string){
     let url = environment.getAccountsById.replace(':aid', id)

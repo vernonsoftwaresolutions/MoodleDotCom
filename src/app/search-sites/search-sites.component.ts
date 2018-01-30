@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchSiteService } from './search-sites.service';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-sites',
@@ -13,10 +14,11 @@ export class SearchSitesComponent implements OnInit {
   sites: any = []
   account: any = {}
   createLoading: any = 0
+  refreshLoading: any = 0
   private id: any
 
   constructor(private searchService: SearchSiteService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,  private router: Router) { }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -31,6 +33,14 @@ export class SearchSitesComponent implements OnInit {
     this.sub.unsubscribe();
   }
   
+  deleteAccount(accountId: string){
+   this.searchService.deleteAccount(accountId).subscribe(result => {
+     console.log("deleted account")
+     //route home
+     this.router.navigate(['/', result.id]);
+
+   }) 
+  }
 
   getAccountId(accountId: string){
     this.searchService.getAccountById(accountId).subscribe(result => {
@@ -49,9 +59,11 @@ export class SearchSitesComponent implements OnInit {
 
   refresh(){
     this.sites = []
+    this.refreshLoading = 1
     this.searchService.getSitesPerAccount(this.account.id).subscribe(result => {
       console.log("returned result ", result)
       this.sites = result
+      this.refreshLoading = 0
     })
   }
 
@@ -61,7 +73,7 @@ export class SearchSitesComponent implements OnInit {
     let request = {
       email: this.account.email,
       //todo-this should be moved to the server side, wt crap was i thinking
-      url: "https://" + newName + ".com",
+      url: "http://" + newName + ".com",
       clientName: this.account.companyName,
       siteName: newName
     }

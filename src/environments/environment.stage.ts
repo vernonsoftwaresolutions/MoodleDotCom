@@ -11,7 +11,8 @@ export const environment = {
   deleteSiteUrl: 'https://stage.sites.vssdevelopment.com/accounts/:aid/sites/:sid',
   getSitesByAccount: 'https://stage.sites.vssdevelopment.com//accounts/:aid/sites',
   getAccountsByEmail: 'https://stage.accounts.vssdevelopment.com/v1/accounts?email=:email',
-  getAccountsById: 'https://stage.accounts.vssdevelopment.com/v1/accounts/:aid'
+  getAccountsById: 'https://stage.accounts.vssdevelopment.com/v1/accounts/:aid',
+  deleteAccountById: 'https://stage.accounts.vssdevelopment.com/v1/accounts/:aid'
 
   
   
