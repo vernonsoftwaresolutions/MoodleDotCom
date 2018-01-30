@@ -21,7 +21,7 @@
             <p><input class="w3-input w3-border" class="form-control" formControlName="companyName"  type="text" placeholder="Company Name" required name="companyName"></p>
             <p>
               <button (click)="createAccount()"  class="w3-button w3-black" value="SUBMIT">
-                <i class="fa fa-wpforms"></i> Register
+                <i [ngClass]="registerLoading == 0 ? 'fa fa-check-square': 'fa fa-circle-o-notch fa-spin'" class=""></i>  Register
               </button>
             </p>
           </form>
