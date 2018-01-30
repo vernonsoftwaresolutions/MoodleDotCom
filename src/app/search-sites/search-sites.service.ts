@@ -36,11 +36,17 @@ export class SearchSiteService {
     return this.http.get(url)
     .map(res => res.json())
   }
-    //get account by id
-    createSite(request: any, id: string){
-      let url = environment.postSiteUrl.replace(':aid', id)
-      return this.http.post(url, request)
-      .map(res => res.json())
-    }
-
+  //create new site
+  createSite(request: any, id: string){
+    let url = environment.postSiteUrl.replace(':aid', id)
+    return this.http.post(url, request)
+    .map(res => res.json())
+  }
+  //get account by id
+  deleteSite(accountId: string, siteId: string){
+    let url = environment.deleteSiteUrl.replace(':aid', accountId).replace(':sid', siteId)
+    return this.http.delete(url,{})
+    .map(res => res.json())
+  }
+//deleteSiteUrl
 }

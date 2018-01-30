@@ -8,7 +8,7 @@ export const environment = {
   env: 'stage',
   postAccountUrl: 'https://stage.accounts.vssdevelopment.com/v1/accounts',
   postSiteUrl: 'https://stage.sites.vssdevelopment.com/accounts/:aid/sites',
-
+  deleteSiteUrl: 'https://stage.sites.vssdevelopment.com/accounts/:aid/sites/:sid',
   getSitesByAccount: 'https://stage.sites.vssdevelopment.com//accounts/:aid/sites',
   getAccountsByEmail: 'https://stage.accounts.vssdevelopment.com/v1/accounts?email=:email',
   getAccountsById: 'https://stage.accounts.vssdevelopment.com/v1/accounts/:aid'

@@ -46,18 +46,36 @@ export class SearchSitesComponent implements OnInit {
   
   }
 
+  refresh(){
+    this.sites = []
+    this.searchService.getSitesPerAccount(this.account.id).subscribe(result => {
+      console.log("returned result ", result)
+      this.sites = result
+    })
+  }
+
   createSite(siteName: string){
+    let newName = siteName.replace(/ /g,"").toLowerCase();
     //create request 
     let request = {
       email: this.account.email,
-      url: "https://" + siteName,
+      //todo-this should be moved to the server side, wt crap was i thinking
+      url: "https://" + newName + ".com",
       clientName: this.account.companyName,
-      siteName: siteName
+      siteName: newName
     }
     this.searchService.createSite(request, this.account.id).subscribe(result => {
       console.log("returned result ", result)
       //refresh sites
       this.getSitesByAccountId(this.account.id)
+    })
+  }
+
+  deleteSite(siteId: string){
+
+    this.searchService.deleteSite(this.id, siteId).subscribe(result => {
+      console.log("successfully triggered delete")
+      this.refresh();
     })
   }
 }
