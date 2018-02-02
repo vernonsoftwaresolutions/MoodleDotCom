@@ -133,10 +133,10 @@ Resources:
       RecordSets:
       -
         Name: !Join [".", [  "stage", "moodle", !Ref RootDomainName]]
-        Type: A
-        AliasTarget:
-          HostedZoneId: Z3BJ6K6RIION7M
-          DNSName: !GetAtt myELB.DNSName
+        Type: CNAME
+        TTL: 900
+        ResourceRecords:
+        - !GetAtt StageRootBucket.DomainName
   
   WebsiteCertificate:
     Type: AWS::CertificateManager::Certificate
