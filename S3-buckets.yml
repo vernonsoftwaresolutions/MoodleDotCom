@@ -1,6 +1,7 @@
 Parameters:
   RootDomainName:
     Description: Domain name for your website (example.com)
+    AllowedPattern: (?!-)[a-zA-Z0-9-.]{1,63}(?<!-)
     Type: String
 Mappings:
   RegionMap:
@@ -123,6 +124,7 @@ Resources:
         TTL: 900
         ResourceRecords:
         - !GetAtt DevRootBucket.DomainName
+
   stagedns:
     Type: AWS::Route53::RecordSetGroup
     Properties:
@@ -131,7 +133,47 @@ Resources:
       RecordSets:
       -
         Name: !Join [".", [  "stage", "moodle", !Ref RootDomainName]]
-        Type: CNAME
-        TTL: 900
-        ResourceRecords:
-        - !GetAtt StageRootBucket.DomainName
+        Type: A
+        AliasTarget:
+          HostedZoneId: Z3BJ6K6RIION7M
+          DNSName: !GetAtt myELB.DNSName
+  
+  WebsiteCertificate:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: 
+        !Join ["", ["*.", !Ref RootDomainName]]
+
+  WebsiteCloudfront:
+    Type: AWS::CloudFront::Distribution
+    DependsOn:
+    - DevRootBucket
+    Properties:
+      DistributionConfig:
+        Comment: Cloudfront Distribution pointing to S3 DevRootBucket
+        Origins:
+        - DomainName: !Select [2, !Split ["/", !GetAtt DevRootBucket.WebsiteURL]]
+          Id: S3Origin
+          CustomOriginConfig:
+            HTTPPort: '80'
+            HTTPSPort: '443'
+            OriginProtocolPolicy: http-only
+        Enabled: true
+        HttpVersion: 'http2'
+        DefaultRootObject: index.html
+        Aliases: !Join [".", [ "dev", "moodle", !Ref RootDomainName ]]
+        DefaultCacheBehavior:
+          AllowedMethods:
+          - GET
+          - HEAD
+          Compress: true
+          TargetOriginId: S3Origin
+          ForwardedValues:
+            QueryString: true
+            Cookies:
+              Forward: none
+          ViewerProtocolPolicy: redirect-to-https
+        PriceClass: PriceClass_All
+        ViewerCertificate:
+          AcmCertificateArn: !Ref WebsiteCertificate
+          SslSupportMethod: sni-only

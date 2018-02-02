@@ -8,7 +8,7 @@ import { ConfirmComponent } from '../dialog/confirm.component';
   styleUrls: ['./landing-page.component.css']
 })
 export class LandingPageComponent implements OnInit {
-    title: string = 'My first AGM project';
+    title: string = 'Vernon Software Solutions';
     lat: number = 44.9477204;
     lng: number = -93.0873056;
     contactEmail = "contact@vssolutions.com"
