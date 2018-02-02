@@ -17,6 +17,9 @@ import { SearchSiteService } from './search-sites/search-sites.service';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { SearchSitesComponent } from './search-sites/search-sites.component';
 
+//angular google maps
+import { AgmCoreModule } from '@agm/core';
+
 const ROUTES = [
   {
     path: '',
@@ -53,8 +56,10 @@ const ROUTES = [
     ReactiveFormsModule,
     HttpModule,
     BootstrapModalModule,
-    RouterModule.forRoot(ROUTES) // Add routes to the app
-
+    RouterModule.forRoot(ROUTES), // Add routes to the app
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCZymo_1zNz2Y8LvKrCw4w2K_56dTBKQcs'
+    })
   ],
   entryComponents: [
     ConfirmComponent,

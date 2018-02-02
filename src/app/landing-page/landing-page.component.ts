@@ -8,14 +8,18 @@ import { ConfirmComponent } from '../dialog/confirm.component';
   styleUrls: ['./landing-page.component.css']
 })
 export class LandingPageComponent implements OnInit {
-  contactEmail = "contact@vernonsoftwaresolutions.com"
-  constructor(private dialogService: DialogService) { }
-  ngOnInit() {
-  }
+    title: string = 'My first AGM project';
+    lat: number = 44.9477204;
+    lng: number = -93.0873056;
+    contactEmail = "contact@vssolutions.com"
+    address = "214 4th St E, St Paul, MN 55101"
+    phoneNumber = "+1 (314) 680 0219"
+    constructor(private dialogService: DialogService) { }
+    ngOnInit() {
+    }
 
-  openSignUp() {
-    console.log('hi');
-    const disposable = this.dialogService.addDialog(ConfirmComponent, {
+    openSignUp() {
+        const disposable = this.dialogService.addDialog(ConfirmComponent, {
         title: 'Confirm title',
         message: 'Confirm message'})
         .subscribe((isConfirmed) => {
