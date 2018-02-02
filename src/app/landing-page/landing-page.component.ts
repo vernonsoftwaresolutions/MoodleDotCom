@@ -8,7 +8,7 @@ import { ConfirmComponent } from '../dialog/confirm.component';
   styleUrls: ['./landing-page.component.css']
 })
 export class LandingPageComponent implements OnInit {
-
+  contactEmail = "contact@vernonsoftwaresolutions.com"
   constructor(private dialogService: DialogService) { }
   ngOnInit() {
   }
@@ -27,11 +27,15 @@ export class LandingPageComponent implements OnInit {
                 alert('declined');
             }
         });
-    //We can close dialog calling disposable.unsubscribe();
-    //If dialog was not closed manually close it by timeout
-    setTimeout(() => {
-        disposable.unsubscribe();
-    }, 10000);
-}
+        //We can close dialog calling disposable.unsubscribe();
+        //If dialog was not closed manually close it by timeout
+        setTimeout(() => {
+            disposable.unsubscribe();
+        }, 10000);
+    }
+
+    openMail(name:string, email:string, subject:string, message:string){
+        window.location.href = "mailto:"+this.contactEmail+"?subject="+subject+"&body="+message;
+    }
 
 }
