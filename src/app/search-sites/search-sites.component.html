@@ -20,7 +20,7 @@
                 <p><i class="fa fa-circle-o fa-fw w3-small w3-margin-right"></i> Account Owner: {{account.firstName}}, {{account.lastName}}</p>
                 <p><i class="fa fa-circle-o fa-fw w3-small w3-margin-right"></i> Phone: {{account.phoneNumber}}</p>
                 <p><i class="fa fa-circle-o fa-fw w3-small w3-margin-right"> </i> Email: {{account.email}}</p>
-                <p><i class="fa fa-circle-o fa-fw w3-small w3-margin-right"></i> Location: Chicago, US</p>
+                <p><i class="fa fa-circle-o fa-fw w3-small w3-margin-right"></i> Location: {{account.location}}</p>
                     <form class="form-inline">
                         <div class="form-group mx-sm-3 mb-2">
                                 <label for="inputPassword2" class="sr-only">Password</label>
@@ -76,7 +76,7 @@
                                         </td>
                                         <td>{{(site.status) ? site.status.S : N/A}}</td>
                                         <td>{{site.creationTimestamp.N | date}}</td>
-                                        <td><button class="btn btn-danger" (click)="deleteSite(site.siteId.S)" > Delete</button></td>
+                                        <td><button class="btn btn-danger" (click)="deleteSite(site.accountId.S,site.siteId.S)" > Delete</button></td>
 
                                 </tr>
                         </tbody>

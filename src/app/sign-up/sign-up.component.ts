@@ -24,6 +24,7 @@ export class SignUpComponent implements OnInit {
       email: ['', Validators.required],
       lastName: ['', Validators.required],
       phoneNumber: ['', Validators.required],
+      location: ['', Validators.required],
       companyName: ['', Validators.required],
       // isTosRead: [false, Validators.pattern('true')],
       });
@@ -37,14 +38,14 @@ export class SignUpComponent implements OnInit {
           lastName: this.addForm.controls['lastName'].value,
           email: this.addForm.controls['email'].value,
           phoneNumber: this.addForm.controls['phoneNumber'].value,
+          location: this.addForm.controls['location'].value,
           companyName: this.addForm.controls['companyName'].value,
-
       };
       console.log(addAccount); // adduser var contains all our form values. store it where you want
       this.signUpService.postAccount(addAccount).subscribe(account => {
             const disposable = this.dialogService.addDialog(SuccessComponent, {
               title: 'Successfully Created Site',
-              message: 'Moodle site ' + account.companyName + ' was succesfully created for account ' + account.firstName})
+              message: 'Moodle account ' + account.companyName + ' was succesfully created for account '})
               .subscribe(() => {
                   //We get dialog result
                   this.router.navigate(['/search', account.id]);

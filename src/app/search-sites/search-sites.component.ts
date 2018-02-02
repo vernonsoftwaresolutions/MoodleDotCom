@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SearchSiteService } from './search-sites.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { DeleteComponent } from '../dialog/delete.component';
+import { DialogService } from 'ng2-bootstrap-modal';
 
 @Component({
   selector: 'app-search-sites',
@@ -17,7 +19,7 @@ export class SearchSitesComponent implements OnInit {
   refreshLoading: any = 0
   private id: any
 
-  constructor(private searchService: SearchSiteService,
+  constructor(private searchService: SearchSiteService, private dialogService: DialogService,
     private route: ActivatedRoute,  private router: Router) { }
 
   ngOnInit() {
@@ -73,7 +75,7 @@ export class SearchSitesComponent implements OnInit {
     let request = {
       email: this.account.email,
       //todo-this should be moved to the server side, wt crap was i thinking
-      url: "http://" + newName + ".com",
+      url: "http://" + newName + ".vssdevelopment.com",
       clientName: this.account.companyName,
       siteName: newName
     }
@@ -87,11 +89,17 @@ export class SearchSitesComponent implements OnInit {
     })
   }
 
-  deleteSite(siteId: string){
+  deleteSite(accountId: string, siteId: string){
 
-    this.searchService.deleteSite(this.id, siteId).subscribe(result => {
-      console.log("successfully triggered delete")
-      this.refresh();
-    })
+    const disposable = this.dialogService.addDialog(DeleteComponent, {
+      title: 'Delete',
+      message: 'Are you sure you want to delete this site?',
+      accountId: accountId,
+      siteId: siteId})      
+      .subscribe(() => {
+          //We get dialog result
+          disposable.unsubscribe();
+          this.refresh();
+      });
   }
 }

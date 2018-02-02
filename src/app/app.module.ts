@@ -7,6 +7,7 @@ import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from './dialog/confirm.component';
 import { SuccessComponent } from './dialog/success.component';
 import { LoginComponent } from './dialog/login.component';
+import { DeleteComponent } from './dialog/delete.component';
 
 import { AppComponent } from './app.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
@@ -41,6 +42,7 @@ const ROUTES = [
     SignUpComponent,
     ConfirmComponent,
     LoginComponent,
+    DeleteComponent,
     SuccessComponent,
     LandingPageComponent,
     SearchSitesComponent
@@ -57,6 +59,7 @@ const ROUTES = [
   entryComponents: [
     ConfirmComponent,
     LoginComponent,
+    DeleteComponent,
     SuccessComponent
   ],
   providers: [SignUpService, SearchSiteService],
