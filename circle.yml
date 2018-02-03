@@ -7,7 +7,7 @@ machine:
 dependencies:
   pre:
      - pip install awscli
-     - aws configure set default.region us-west-2
+     - aws configure set default.region us-east-1
      - npm install  # -dev
      - npm run install-angular
 
