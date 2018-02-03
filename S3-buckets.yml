@@ -146,8 +146,8 @@ Resources:
 
   WebsiteCloudfront:
     Type: AWS::CloudFront::Distribution
-    DependsOn:
-    - DevRootBucket
+    # DependsOn:
+    # - DevRootBucket
     Properties:
       DistributionConfig:
         Comment: Cloudfront Distribution pointing to S3 DevRootBucket
