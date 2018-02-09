@@ -8,7 +8,7 @@
     "prodStackName": "prod-hosted-zone",
     "domainName": "vssdevelopment.com",
     "devSiteName": "dev.moodle.vssdevelopment.com",
-    "stageSiteName": "dev.moodle.vssdevelopment.com"
+    "stageSiteName": "stage.moodle.vssdevelopment.com"
 
 
   },
