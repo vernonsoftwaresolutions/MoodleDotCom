@@ -19,10 +19,12 @@ deployment:
   development:
     branch: master
     commands:
-      - npm run cloudformation-package-env
-      - npm run cloudformation-deploy-env
+      - npm run package-hosted-zone
+      - npm run deploy-nonprod-hosted-zone
+      - npm run deploy-dev-site
       - npm run build-dev
       - npm run deploy-dev
       ##todo- this is where some e2e tests go!
+      - npm run deploy-stage-site
       - npm run build-stage
       - npm run deploy-stage

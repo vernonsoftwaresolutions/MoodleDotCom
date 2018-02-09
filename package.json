@@ -2,6 +2,14 @@
   "name": "moodoe-dot-com",
   "version": "0.0.0",
   "license": "MIT",
+  "config": {
+    "s3BucketName": "lambda.bucket.moodle",
+    "nonProdStackName": "nonprod-hosted-zone",
+    "prodStackName": "prod-hosted-zone",
+    "domainName": "vssdevelopment.com",
+    "siteName": "dev.moodle.vssdevelopment.com"
+
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -14,8 +22,10 @@
     "deploy-dev": "aws s3 sync --delete ./dist s3://dev.moodle.vssdevelopment.com",
     "deploy-stage": "aws s3 sync --delete ./dist s3://stage.moodle.vssdevelopment.com",
     "install-angular": "npm install -g @angular/cli",
-    "cloudformation-package-env": "aws cloudformation package --template-file S3-buckets.yml --output-template-file output.yml --s3-bucket elasticbeanstalk-moodle-deployables",
-    "cloudformation-deploy-env": "aws cloudformation deploy --template-file output.yml --capabilities CAPABILITY_IAM --stack-name moodle-dot-com --parameter-overrides RootDomainName=vssdevelopment.com || true"
+    "package-hosted-zone": "aws cloudformation package --template-file route53-template.yaml --output-template-file output.yml --s3-bucket $npm_package_config_s3BucketName",
+    "deploy-nonprod-hosted-zone": "aws cloudformation deploy --template-file output.yml --stack-name $npm_package_config_nonProdStackName --parameter-overrides DomainName=vssdevelopment.com HostedZoneExists=true Environment=nonprod",
+    "deploy-prod-hosted-zone": "aws cloudformation deploy --template-file output.yml --stack-name $npm_package_config_prodStackName --parameter-overrides DomainName=vssdevelopment.com HostedZoneExists=true Environment=prod",
+    "deploy-dev-site": "./deploy-environment.sh dev $npm_package_config_nonProdStackName $npm_package_config_s3BucketName $npm_package_config_domainName $npm_package_config_siteName true"
   },
   "private": true,
   "dependencies": {
