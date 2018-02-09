@@ -21,7 +21,7 @@ deployment:
     commands:
       - npm run package-hosted-zone
       - npm run deploy-nonprod-hosted-zone || exit 0
-      - npm run deploy-dev-site
+      - npm run deploy-dev-site || exit 0
       - npm run build-dev
       - npm run deploy-dev
       ##todo- this is where some e2e tests go!
