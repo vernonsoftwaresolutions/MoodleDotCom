@@ -20,7 +20,7 @@ deployment:
     branch: master
     commands:
       - npm run package-hosted-zone
-      - npm run deploy-nonprod-hosted-zone
+      - npm run deploy-nonprod-hosted-zone || exit 0
       - npm run deploy-dev-site
       - npm run build-dev
       - npm run deploy-dev
