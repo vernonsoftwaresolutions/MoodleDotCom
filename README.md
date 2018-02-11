@@ -1,3 +1,5 @@
+# Moodle Dot Com application [![CircleCI](https://circleci.com/gh/vernonsoftwaresolutions/MoodleDotCom.svg?style=svg)](https://circleci.com/gh/vernonsoftwaresolutions/MoodleDotCom)
+
 #Install
 Install Angular CLI
 `npm install -g @angular/cli`
