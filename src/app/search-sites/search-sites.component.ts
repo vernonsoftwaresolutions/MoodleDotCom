@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { DeleteComponent } from '../dialog/delete.component';
 import { DialogService } from 'ng2-bootstrap-modal';
+import {AuthorizationService} from '../auth/authorization.service'
 
 @Component({
   selector: 'app-search-sites',
@@ -20,21 +21,43 @@ export class SearchSitesComponent implements OnInit {
   private id: any
 
   constructor(private searchService: SearchSiteService, private dialogService: DialogService,
-    private route: ActivatedRoute,  private router: Router) { }
+    private route: ActivatedRoute,  private router: Router, private authService: AuthorizationService) { }
 
   ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
-      this.id = params['id']; // (+) converts string 'id' to a number
-      //lookup sites and account in parallel
-      this.getSitesByAccountId(this.id)
-      this.getAccountId(this.id)
-    });
+    this.route.queryParams.subscribe(params => {
+      let code = params['code'];
+      console.log(code); // Print the parameter to the console. 
+      this.getAuthToken(code).then(res => {
+        this.getAccountByToken(code)
+
+      })
+  });
 
   }
   private ngOnDestroy() {
     this.sub.unsubscribe();
   }
   
+  getAuthToken(code){
+    console.log("about to build request with code ", code)
+    return new Promise((resolve, reject) => {
+      this.authService.postToken(code).subscribe(result => {
+          console.log(result)
+          localStorage.setItem('idToken', result.id_token);
+          localStorage.setItem('accessToken', result.access_token);
+          resolve("OK");
+      })
+    })
+  }
+
+  getAccountByToken(code: string){
+    this.searchService.getAccountByToken().subscribe(result => {
+        console.log("returned result account ", result)
+        this.account = result;        
+    })
+
+  }
+
   deleteAccount(accountId: string){
    this.searchService.deleteAccount(accountId).subscribe(result => {
      console.log("deleted account")
@@ -44,13 +67,7 @@ export class SearchSitesComponent implements OnInit {
    }) 
   }
 
-  getAccountId(accountId: string){
-    this.searchService.getAccountById(accountId).subscribe(result => {
-        console.log("returned result account ", result)
-        this.account = result;        
-    })
 
-  }
   getSitesByAccountId(accountId: string){
     this.searchService.getSitesPerAccount(accountId).subscribe(result => {
       console.log("returned result ", result)

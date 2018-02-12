@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, RequestOptions, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { environment } from '../../environments/environment';
 
@@ -22,11 +22,17 @@ export class SearchSiteService {
       .map(res => res.json());
   }
   // get account by email
-  getAccountByEmail(email: string){
+  getAccountByToken(){
     //create url
-    let url = environment.getAccountsByEmail.replace(':email', email)
+    let url = environment.getAccountsByEmail.replace(':accessToken', localStorage.getItem("accessToken"))
     console.log('created url ', url)
-    return this.http.get(url)
+    let myHeaders = new Headers();
+    myHeaders.append('Authorization', localStorage.getItem("idToken")  ); 
+    let options = new RequestOptions({
+        // Have to make a URLSearchParams with a query string
+        headers: myHeaders
+    });
+    return this.http.get(url, options)
     .map(res => res.json());
   }
 
