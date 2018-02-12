@@ -44,7 +44,7 @@ Resources:
       WebsiteConfiguration:
         IndexDocument: index.html
         ErrorDocument: 404.html
-        RoutingRule:
+        RoutingRules:
           - RedirectRule:
               HostName: !Ref FullDomainName
               ReplaceKeyPrefixWith: "#!/"
