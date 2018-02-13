@@ -16,6 +16,16 @@ Parameters:
     Type: String
     Description: the Amazon Resource Name (ARN) of an AWS Certificate Manager (ACM) certificate.
     AllowedPattern: "arn:aws:acm:.*"
+  CacheValueTTL:
+    Type: Number
+    Default: 300
+    AllowedValues: 
+      - 60
+      - 120
+      - 300
+      - 600
+      - 900
+    Description: TTL options 1, 2, 5, 10, 15 mins 
     
 Mappings:
   RegionMap:
@@ -83,9 +93,9 @@ Resources:
           AllowedMethods:
           - GET
           - HEAD
-          DefaultTTL: 120
-          MaxTTL: 120
-          MinTTL: 120
+          DefaultTTL: !Ref CacheValueTTL
+          MaxTTL: !Ref CacheValueTTL
+          MinTTL: !Ref CacheValueTTL
           Compress: true
           TargetOriginId: S3Origin
           ForwardedValues:
