@@ -26,17 +26,17 @@ import { SearchSitesComponent } from './search-sites/search-sites.component';
 import { AgmCoreModule } from '@agm/core';
 
 const ROUTES = [
-  {
-    path: '',
-    redirectTo: 'landing-page',
-    pathMatch: 'full'
-  },
+  // {
+  //   path: '',
+  //   redirectTo: 'landing-page',
+  //   pathMatch: 'full'
+  // },
   {
     path: 'sign-up',
     component: SignUpComponent
   },
   {
-    path: 'landing-page',
+    path: '',
     component: LandingPageComponent
   },
   {
