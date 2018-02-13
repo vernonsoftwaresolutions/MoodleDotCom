@@ -44,10 +44,10 @@ Resources:
       WebsiteConfiguration:
         IndexDocument: index.html
         ErrorDocument: 404.html
-        RoutingRules:
-          - RedirectRule:
-              HostName: !Ref FullDomainName
-              ReplaceKeyPrefixWith: "#!/"
+        # RoutingRules:
+        #   - RedirectRule:
+        #       HostName: !Ref FullDomainName
+        #       ReplaceKeyPrefixWith: "#!/"
 
   WebsiteBucketPolicy:
     Type: AWS::S3::BucketPolicy
