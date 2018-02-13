@@ -83,6 +83,9 @@ Resources:
           AllowedMethods:
           - GET
           - HEAD
+          DefaultTTL: 120
+          MaxTTL: 120
+          MinTTL: 120
           Compress: true
           TargetOriginId: S3Origin
           ForwardedValues:
