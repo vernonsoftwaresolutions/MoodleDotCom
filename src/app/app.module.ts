@@ -61,7 +61,8 @@ const ROUTES = [
     ReactiveFormsModule,
     HttpModule,
     BootstrapModalModule,
-    RouterModule.forRoot(ROUTES, { useHash: true }), // Add routes to the app
+    RouterModule.forRoot(ROUTES), // Add routes to the app
+    // RouterModule.forRoot(ROUTES, { useHash: true }), // Add routes to the app
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCZymo_1zNz2Y8LvKrCw4w2K_56dTBKQcs'
     })
