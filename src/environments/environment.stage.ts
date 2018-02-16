@@ -15,7 +15,8 @@ export const environment = {
   deleteAccountById: 'https://stage.accounts.vssdevelopment.com/v1/accounts/:aid',
   clientId: '6i2atc0o3g7abpic96lnfva64e',
   loginUrl: 'https://devconsole.auth.us-east-1.amazoncognito.com',
-  redirctUrl: 'https://stage.moodle.vssdevelopment.com/search'
+  redirctUrl: 'https://stage.moodle.vssdevelopment.com/search',
+  tokenUrl: 'https://stagemoodle.auth.us-east-1.amazoncognito.com/oauth2/token'
 
 
   
